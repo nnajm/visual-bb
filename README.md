@@ -16,6 +16,13 @@ A visual tool for experiencing with bit manipulation, specially 64bit chess bitb
 - Results displayed as bitboards
 - Runs in a browser, no server needed
 
+## Installation
+
+- Download latest release
+- Unzip somwhere
+- Launch a local web server (`python3 -m http.server` for example) where the `index.html` file is located
+- Start using the tool
+
 ## Supported syntax:
 
 Each instruction should fit in a single line.
