@@ -121,3 +121,9 @@ Available via a global variable named `BB`
     Returns sliding vertical attacks of rook/queen as a bitboard
 
 
+## License
+
+GNU General Public License v3.0 or later
+
+See LICENCE to see the full text.
+
