@@ -743,7 +743,7 @@ const createElem = (tagname, options = null, children = null) => {
 exports.createElem = createElem;
 const createIcon = (name) => {
     const iconElem = document.createElement('img');
-    iconElem.src = `/images/${name}.png`;
+    iconElem.src = `images/${name}.png`;
     iconElem.textContent = name;
     return iconElem;
 };
