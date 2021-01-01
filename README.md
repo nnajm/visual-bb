@@ -4,6 +4,8 @@
 
 A visual tool for experiencing with bit manipulation, specially 64bit chess bitboards.
 
+[Demo](https://nnajm.github.io/visual-bb/)
+
 ## Main features
 
 - Code editor (syntax highlight) 
