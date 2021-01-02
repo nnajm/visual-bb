@@ -128,6 +128,35 @@ const BB = {
     },
     sliding_attacks_v(occupied: bigint, squareIndex: number, verticalMask: bigint) {
         return BB.sliding_attacks_diag(occupied, squareIndex, verticalMask);
+    },
+    from_fen(fen: string) {
+        fen = (fen || '').trim();
+        if(fen == '') {
+            return 0n;
+        }
+
+        const ranks = fen.split(' ').shift().split('/')
+            .map(r => r.split(''));
+
+        if(ranks.length != 8 || ranks.some(r => r.length == 0)) {
+            return 0n
+        }
+
+        let binStr = ranks.map(rank => {
+            let rankStr = '';
+            for(let c of rank) {
+                const cAsNumber = Number(c);
+                if(isNaN(cAsNumber)) {
+                    rankStr += '1';
+                } else {
+                    rankStr += new Array(cAsNumber + 1).map(_ => '').join('0');
+                }
+            }
+            return rankStr
+        }).reverse()
+        .join('');
+
+        return BigInt(`0b${binStr}`);
     }
 };
 

@@ -15,15 +15,15 @@ html {
         }
 
         h4 {
-            border-bottom: 1px solid #ddd;
-            margin: 5px;
+            margin: 0;
+            padding: 5px;
             font-size: 12px;
             width: 100%;
-            height: 19px;
-            color: chocolate;
+            background-color: #8ba987;
+            color: white;
         }
 
-        .bb-main {
+        .app {
             position: absolute;
             top: 0;
             right: 0;
@@ -32,269 +32,377 @@ html {
             padding: 0;
             overflow: hidden;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
 
-            .bb-context {
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                width: 201px;
-                overflow-x: hidden;
-                overflow-y: auto;
-                border-right: 1px solid #ddd;
-                font-size: 12px;
-                display: flex;
-                flex-direction: column;
-                justify-content: start;
-                align-items: flex-start;
+            .header {
+                display: grid;
+                grid-template-columns: 42px auto auto auto;
+                align-items: center;
+                height: 60px;
+                padding: 10px;
+                background-color: #60677a;
+                color: white;
 
-                div {
-                    position: absolute;
-                    top: 25px;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    overflow-x: hidden;
-                    overflow-y: auto;
+                h3 {
+                    margin: 0;
+                    font-size: 18px;
+                }                
 
-                    table {
-                        width: 100%;
-                        margin: 0 5px;
-                        table-layout: fixed;
-                        border-spacing: 0;
-                        border-collapse: collapse;                    
-
-                        td {
-                            vertical-align: top;
-                            font-weight: bold;
-
-                            ul {
-                                list-style: none;
-                                padding: 0;
-                                margin: 0;
-                                font-size: 10px;
-                                font-weight: normal;
-                                color: #777;                            
-
-                                li {
-                                    overflow: hidden;
-                                    text-overflow: ellipsis;
-                                }
-
-                                li.decimal {
-                                    color: #333;
-                                }
-
-                            }
-                        }
-                    }
-                }
-            }
-
-            .bb-editors-container {
-                position: absolute;
-                top: 0;
-                right: 201px;
-                left: 201px;
-                bottom: 0;
-                display: flex;
-                flex-direction: column;
-
-                .bb-editor-toolbar {
-                    width: 100%;
-                    height: 24px;
-                    border-bottom: 1px solid #ddd;
+                .links {
+                    justify-self: end;
                     display: flex;
-                    flex-direction: row;
-                    justify-content: start;
-                    padding: 3px;
+                    flex-direction: row;                        
 
-                    button {
-                        border: none;
-                        width: 18px;
-                        height: 18px;
-                        background-color: white;
-                        color: #333;
-                        margin-right: 3px;
+                    .header-link {
                         display: flex;
-                        justify-content: center;
                         align-items: center;
+                        justify-content: center;
+                        padding: 5px;
+                        margin-left: 5px;
+                        font-size: 12px;
+                        font-weight: bold;
+                        color: white;
                         cursor: pointer;
+                        text-decoration: none;
+                        color: white;                        
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
 
                         img {
                             width: 16px;
                             height: 16px;
-                            pointer-events: none;
+                            margin-right: 5px;
                         }
+                    }
+                }
+            }
 
-                        &:hover {
-                            background-color: #eee;
+            .bb-main {
+                position: absolute;
+                top: 60px;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                padding: 0;
+                overflow: hidden;
+                display: flex;
+                flex-direction: row;
+
+                .bb-context {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    width: 201px;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    font-size: 12px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: start;
+                    align-items: flex-start;
+
+                    div {
+                        position: absolute;
+                        top: 25px;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+
+                        table {
+                            width: 100%;
+                            margin: 0 5px;
+                            table-layout: fixed;
+                            border-spacing: 0;
+                            border-collapse: collapse;                    
+
+                            td {
+                                vertical-align: top;
+                                font-weight: bold;
+
+                                ul {
+                                    list-style: none;
+                                    padding: 0;
+                                    margin: 0;
+                                    font-size: 10px;
+                                    font-weight: normal;
+                                    color: #777;                            
+
+                                    li {
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                    }
+
+                                    li.decimal {
+                                        color: #333;
+                                    }
+
+                                }
+                            }
                         }
                     }
                 }
 
-                .bb-editors-list {
+                .bb-editors-container {
                     position: absolute;
-                    top: 23px;
-                    right: 0;
-                    left: 0;
+                    top: 0;
+                    right: 201px;
+                    left: 201px;
                     bottom: 0;
-                    padding: 5px;
-                    overflow-x: hidden;
-                    overflow-y: auto;
                     display: flex;
                     flex-direction: column;
 
-                    .bb-editor {
+                    .bb-editor-toolbar {
                         width: 100%;
-                        height: auto;
+                        height: 28px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: start;
+                        padding: 5px;
+
+                        button {
+                            border: none;
+                            height: 18px;
+                            background-color: white;
+                            color: #333;
+                            margin-right: 3px;
+                            padding: 1px 4px 1px 0;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            cursor: pointer;
+                            font-size: 10px;
+
+                            img {
+                                width: 16px;
+                                height: 16px;
+                                pointer-events: none;
+                            }
+
+                            &:hover {
+                                background-color: #eee;
+                            }
+                        }
+                    }
+
+                    .bb-editors-list {
+                        position: absolute;
+                        top: 55px;
+                        right: 10px;
+                        left: 7px;
+                        bottom: 10px;
+                        padding: 10px;
+                        border-radius: 5px;
+                        box-shadow: 0px 1px 5px #aaa;
+                        overflow-x: hidden;
+                        overflow-y: auto;
                         display: flex;
                         flex-direction: column;
-                        margin-bottom: 5px;
 
-                        .bb-editor-code {
+                        .bb-editor {
                             width: 100%;
-                            min-height: 100px;
-                            flex: 1;
-                            color: #333;
-                            border: none;
-                            resize: none;
-                        }
-
-                        .bb-editor-result {
+                            height: auto;
                             display: flex;
-                            flex-direction: row;
-                            justify-content: start;
-                            flex-wrap: wrap;
-                            padding: 5px;
-                            margin: 0;
+                            flex-direction: column;
+                            margin-bottom: 5px;
 
-                            .bb-value {
-                                width: 150px;
+                            .bb-editor-code {
+                                width: 100%;
+                                min-height: 100px;
+                                flex: 1;
+                                color: #333;
+                                border: none;
+                                resize: none;
+                            }
+
+                            .bb-editor-result {
                                 display: flex;
-                                flex-direction: column;
+                                flex-direction: row;
+                                justify-content: start;
+                                flex-wrap: wrap;
+                                padding: 5px;
+                                margin: 0;
 
-                                & > div:first-child {
-                                    width: 100%;
+                                .bb-value {
+                                    width: 150px;
+                                    display: flex;
+                                    flex-direction: column;
+
+                                    & > div:first-child {
+                                        width: 100%;
+                                        height: 20px;
+                                        padding: 3px;
+                                        font-weight: bold;
+                                        text-align: center;
+                                    }
+                                }
+                            }
+
+                            .CodeMirror {
+                                height: auto;
+                                border: 1px solid #ddd;
+                                background-color: #f7f7f7;
+                            }
+
+                            &.editor-focused .CodeMirror {
+                                border: 1px solid #7DADD9;
+                                background-color: white;
+                            }
+                        }
+                    }
+                }
+
+                .bb-helpers {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 201px;
+                    padding: 0;
+                    overflow: hidden;
+                    font-size: 14px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .bb-value-editor {
+                        height: 300px;
+                        font-size: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+
+                        .bit-grid { 
+                            table {
+                                td {
+                                    width: 20px;
                                     height: 20px;
-                                    padding: 3px;
-                                    font-weight: bold;
-                                    text-align: center;
                                 }
                             }
                         }
 
-                        .CodeMirror {
-                            height: auto;
-                            border: 1px solid #ddd;
-                            background-color: #eee;
+                        table.value-radix {
+
+                            margin-left: -10px;
+                            margin-bottom: 10px;
+
+                            input {
+                                border: 1px solid #ddd;
+                                width: 102%;
+                                font-size: 10px;
+                            }
                         }
 
-                        &.editor-focused .CodeMirror {
-                            border: 1px solid #7DADD9;
-                            background-color: white;
-                        }
                     }
-                }
-            }
 
-            .bb-helpers {
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                width: 201px;
-                padding: 1px 5px;
-                overflow: hidden;
-                border-left: 1px solid #ddd;
-                font-size: 14px;
-                display: flex;
-                flex-direction: column;
+                    .bb-custom-functions {
+                        flex:1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
 
-                .bb-value-editor {
-                    height: 230px;
-                    border-bottom: 1px solid #ddd;
-                    font-size: 10px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-
-                    table.value-radix {
-
-                        input {
-                            border: 1px solid #ddd;
-                            width: 98%;
+                        ul {
+                            list-style: none;
+                            margin: 0;
+                            padding: 0;
+                            padding-left: 5px;
                             font-size: 10px;
+                            color: #777;                            
+
+                            li {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                margin-top: 5px;
+                            }
                         }
                     }
-
                 }
 
-                .bb-custom-functions {
-                    flex:1;
+                .bit-grid {
+                    flex: 1;
                     display: flex;
-                    flex-direction: column;
-                    justify-content: start;
+                    justify-content: center;
+                    align-items:center;
 
-                    ul {
-                        list-style: none;
-                        margin: 0;
-                        padding: 0;
-                        padding-left: 5px;
-                        font-size: 10px;
-                        color: #777;                            
+                    table {
+                        border-collapse: collapse;
+                        border-spacing: 0;
+                        border: none;
+                        table-layout: fixed;
+                        font-size: 9px;
 
-                        li {
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            margin-top: 5px;
-                        }
-                    }
-                }
-            }
-
-            .bit-grid {
-                flex: 1;
-                display: flex;
-                justify-content: center;
-                align-items:center;
-
-                table {
-                    border-collapse: collapse;
-                    border-spacing: 0;
-                    border: none;
-                    table-layout: fixed;
-                    font-size: 9px;
-
-                    td {
-                        border: 1px solid #ccc;
-                        vertical-align: middle;
-                        text-align: center;
-                        width: 15px;
-                        height: 15px;
-
-                        div {
-                            background-color: #000;
-                            width: 9px;
-                            height: 9px;
-                        }
-
-                        &.no-decoration {
-                            border: none;
-                        }
-                    }
-
-                    tbody {
-                        tr:nth-child(odd) > td:nth-child(even),
-                        tr:nth-child(even) > td:nth-child(odd) {
-                            background-color: #eee;
+                        td {
+                            vertical-align: middle;
+                            text-align: center;
+                            width: 15px;
+                            height: 15px;
+                            background-color: rgba(240, 217, 181, 0.5);
 
                             &.no-decoration {
                                 background-color: white;
                             }
-                        }                        
+
+                            & > div {
+                                display: flex;
+                                justify-content: stretch;
+                                align-items: stretch;
+                                width: 100%;
+                                height: 100%;
+
+                                div {
+                                    flex: 1;
+                                    margin: 2px;
+                                }
+                            }
+
+                            &.bit-set > div > div {
+                                background-color: #000;
+                                box-shadow: 0px 1px 1px #000;
+                            }
+
+
+                            &.no-decoration {
+                                border: none;
+
+                                div {
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                            }
+                        }
+
+                        tbody {
+                            tr:not(:last-child) {
+                                td:first-child {
+                                    border-left: 1px solid #f0d9b5;
+                                }
+
+                                td:last-child {
+                                    border-left: 1px solid #f0d9b5;
+                                }
+                            }
+
+                            tr:first-child td:not(:last-child) {
+                                border-top: 1px solid #f0d9b5;
+                            }
+
+                            tr:last-child td:not(:last-child) {
+                                border-top: 1px solid #f0d9b5;
+                            }
+
+                            tr:nth-child(odd) > td:nth-child(even),
+                            tr:nth-child(even) > td:nth-child(odd) {
+                                background-color: rgba( 181, 136, 99, 0.5);
+
+                                &.no-decoration {
+                                    background-color: white;
+                                }
+                            }                        
+                        }
                     }
                 }
             }

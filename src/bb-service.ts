@@ -5,7 +5,7 @@ import { BBMembers, installBBFunctions } from './bb-funtions';
 import { BB64BitRenderer } from './bb-64bit-renderer';
 import { BBEditor } from './bb-editor';
 import { BBType } from './bb-funtions';
-import { EditorContext, copyContext, createElem, createIcon } from './common';
+import { EditorContext, copyContext, createElem } from './common';
 import { BBValueEditor } from './bb-value-editor';
 
 declare const CodeMirror: any;
@@ -44,33 +44,33 @@ export class BBService {
                 this._BBValueEditor = new BBValueEditor();
 
                 // create interface
-                document.body.append(
-                    createElem('div', { id: 'bb-main', classList: ['bb-main'] }, [
-                        createElem('div', { classList: ['bb-context'] }, [
-                            createElem('h4', { content: 'Context'} ),
-                            this._contextElem = createElem('div'),
+                document.getElementsByClassName('bb-main').item(0).append(...[
+                    createElem('div', { classList: ['bb-context'] }, [
+                        createElem('h4', { content: 'Context' }),
+                        this._contextElem = createElem('div'),
+                    ]),
+                    createElem('div', { classList: ['bb-editors-container'] }, [
+                        createElem('h4', { content: 'Code' }),
+                        createElem('div', { classList: ['bb-editor-toolbar'] }, [
+                            createElem('button', { id: `btn@exec`, content: 'execute', title: 'Execute', icon: 'execute' }),
+                            createElem('button', { id: `btn@iafter`, content: 'below', title: 'Insert new editor below', icon: 'add' }),
+                            createElem('button', { id: `btn@ibefore`, content: 'above', title: 'Insert new editor above', icon: 'add' }),
+                            createElem('button', { id: `btn@remove`, content: 'remove', title: 'Remove editor', icon: 'remove' })
                         ]),
-                        createElem('div', { classList: ['bb-editors-container'] }, [
-                            createElem('div', { classList: ['bb-editor-toolbar'] }, [
-                                createElem('button', { id: `btn@exec`, title: 'Execute' }, [createIcon('execute')]),
-                                createElem('button', { id: `btn@iafter`, title: 'Insert new editor below' }, [createIcon('add_below')]),
-                                createElem('button', { id: `btn@ibefore`, title: 'Insert new editor above' }, [createIcon('add_above')]),
-                                createElem('button', { id: `btn@remove`, title: 'Remove editor' }, [createIcon('remove')])
-                            ]),
-                            this._editorsContainerElem = createElem('div', { classList: ['bb-editors-list'] })
-                        ]),
-                        createElem('div', { classList: ['bb-helpers'] }, [
-                            createElem('div', { classList: ['bb-value-editor'] }, this._BBValueEditor.getHtmlElements()),
-                            createElem('div', { classList: ['bb-custom-functions'] }, [
-                                (function() {
-                                    const funcTitleElem = createElem('h4');
-                                    funcTitleElem.textContent = 'Custom vars/funcs'
-                                    return funcTitleElem;
-                                }()),
-                                bbFunctionsElem = createElem('ul')
-                            ])
+                        this._editorsContainerElem = createElem('div', { classList: ['bb-editors-list'] })
+                    ]),
+                    createElem('div', { classList: ['bb-helpers'] }, [
+                        createElem('div', { classList: ['bb-value-editor'] }, this._BBValueEditor.getHtmlElements()),
+                        createElem('div', { classList: ['bb-custom-functions'] }, [
+                            (function () {
+                                const funcTitleElem = createElem('h4');
+                                funcTitleElem.textContent = 'Custom vars/funcs'
+                                return funcTitleElem;
+                            }()),
+                            bbFunctionsElem = createElem('ul')
                         ])
-                    ]));
+                    ])
+                ]);
 
                 // add one editor by default
                 this._addEditor();
@@ -85,7 +85,7 @@ export class BBService {
 
                 // listen to clicks
                 document.addEventListener('click', this._handleMouseClick);
-                document.addEventListener('keypress', this._handleKeyboardPress);
+                document.addEventListener('keydown', this._handleKeyboardPress);
             }
         };
     }
@@ -212,12 +212,9 @@ export class BBService {
         codeMirrorEditor.off('focus', this._handleCmFocus);
         codeMirrorEditor.toTextArea();
 
-        if (this._editorElems[editorId].editorElem != null) {
-            this._editorElems[editorId].editorElem.parentNode.removeChild(this._editorElems[editorId].editorElem);
-        }
-
-        if (this._editorElems[editorId].resultElem != null) {
-            this._editorElems[editorId].resultElem.parentNode.removeChild(this._editorElems[editorId].resultElem);
+        const editorElem = this._editorElems[editorId].editorElem?.parentElement;
+        if (editorElem != null) {
+            editorElem.remove();
         }
 
         this._editorElems[editorId] = null;

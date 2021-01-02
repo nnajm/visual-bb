@@ -15,6 +15,7 @@ interface CreateElemenOptions {
     classList?: string[],
     title?: string;
     content?: string;
+    icon?: string;
 }
 
 export const createElem = (tagname: string, options: CreateElemenOptions = null, children: HTMLElement[] = null) => {
@@ -32,13 +33,17 @@ export const createElem = (tagname: string, options: CreateElemenOptions = null,
         elem.title = title;
     }
 
-    const content = options?.content?.trim();
-    if(content != null) {
-        elem.textContent = content;
-    }
-
     if (children?.length > 0) {
         elem.append(...children);
+    } else {
+        if(options?.icon != null) {
+            elem.appendChild(createIcon(options.icon));
+        }
+
+        const content = options?.content?.trim();
+        if(content != null) {
+            elem.append(content);
+        }
     }
 
     return elem;
@@ -46,7 +51,7 @@ export const createElem = (tagname: string, options: CreateElemenOptions = null,
 
 export const createIcon = (name: string) => {
     const iconElem = document.createElement('img');
-    iconElem.src = `/images/${name}.png`;
+    iconElem.src = `images/${name}.png`;
     iconElem.textContent = name;
 
     return iconElem;

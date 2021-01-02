@@ -1,8 +1,8 @@
-# Visual BB
-------------
+# ![logo](https://raw.githubusercontent.com/nnajm/visual-bb/main/public/images/logo.png) Visual BB
+-------------------------------------------
 
 
-A visual tool for experiencing with bit manipulation, specially 64bit chess bitboards.
+A visual tool to manipulate 64bit numbers, specially chess bitboards.
 
 [Demo](https://nnajm.github.io/visual-bb/)
 
@@ -47,7 +47,7 @@ The arithmetic expression can contains functions as long as they are accessible 
 // test rook attacks
 occupied = 0b10000000100000000000010000000000001100001n
 rook_pos = 0
-attacks = BB.sliding_attack_v(occupied, rook_pos, BB.ROOK_ATTACKS.NORTH[rook_pos])
+attacks = BB.sliding_attacks_v(occupied, rook_pos, BB.ROOK_ATTACKS.NORTH[rook_pos])
 ```
 
 ### Special instruction:
@@ -119,6 +119,10 @@ Available via a global variable named `BB`
 - `sliding_attacks_v: (occupied: bigint, squareIndex: number, verticalMask: bigint) => bigint`
 
     Returns sliding vertical attacks of rook/queen as a bitboard
+
+- `from_fen: (fen: string) => bigint`
+
+    Creates 'occupied' bitboard from fen string
 
 
 ## License

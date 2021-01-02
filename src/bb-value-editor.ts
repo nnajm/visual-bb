@@ -17,9 +17,9 @@ export class BBValueEditor {
 
     getHtmlElements = () => {
         const elems = [
-            createElem('h4', { content: 'Bit editor'}),
+            createElem('h4', { content: 'Bit editor' }),
             this._gridElem = createElem('div', { classList: ['bit-grid'] }),
-            createElem('table', { classList: ['value-radix']}, [
+            createElem('table', { classList: ['value-radix'] }, [
                 createElem('tr', null, [
                     createElem('td', { content: 'dec' }),
                     createElem('td', null, [this._decInputElem = createElem('input') as HTMLInputElement])
@@ -58,19 +58,23 @@ export class BBValueEditor {
 
     private _onCellClick = (evt: MouseEvent) => {
         let cellTdElem = evt.target as HTMLElement;
-        while(cellTdElem != null && cellTdElem.classList.contains('bit-cell') == false) {
+        while (cellTdElem != null && cellTdElem.classList.contains('bit-cell') == false) {
             cellTdElem = cellTdElem.parentElement;
         }
 
-        if(cellTdElem != null) {
-            const position = parseInt(Array.prototype.slice.apply(cellTdElem.classList).pop().split('-').pop());
+        if (cellTdElem != null) {
+            const position = parseInt(Array.prototype.slice.apply(cellTdElem.classList)
+                .filter(c => c.indexOf('bit-index') >= 0)
+                .pop()
+                .split('-').pop());
+
             const bbPos = 1n << BigInt(position);
-            if((this._value & bbPos) > 0) {
+            if ((this._value & bbPos) > 0) {
                 this._value ^= bbPos;
-                cellTdElem.innerHTML = '';
+                cellTdElem.classList.remove('bit-set');
             } else {
                 this._value |= bbPos;
-                cellTdElem.innerHTML = '<div></div>';
+                cellTdElem.classList.add('bit-set');
             }
 
             this._updateDisplay();

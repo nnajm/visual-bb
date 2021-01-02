@@ -32,17 +32,26 @@ export class BB64BitRenderer {
             let row = '<tr>';
             for (let file = 0; file < 8; file++) {
                 const pos = rank * 8 + file;
-                row += `<td ${addClasses ? `class="bit-cell bit-${pos}"` : ''}>${bitIndices.indexOf(pos) >= 0 ? '<div></div>' : ''}</td>`;
+                let classList= '';
+                if(bitIndices.indexOf(pos) >= 0){
+                    classList += ' bit-set';
+                }
+
+                if(addClasses) {
+                    classList = `bit-cell bit-index-${pos}`;
+                }
+                
+                row += `<td ${classList != '' ? `class="${classList}"` : ''}><div><div></div></div></td>`;
             }
-            row += `<td class="no-decoration">${rank + 1}</td></tr>`;
+            row += `<td class="no-decoration"><div>${rank + 1}</div></td></tr>`;
             rows.unshift(row);
         }
 
-        let files = '<tr></td>';
+        let files = '<tr>';
         for (let file = 0; file < 8; file++) {
-            files += `<td class="no-decoration">${String.fromCharCode(97 + file)}</td>`;
+            files += `<td class="no-decoration"><div>${String.fromCharCode(97 + file)}</div></td>`;
         }
-        files += '<td class="no-decoration"></tr>';
+        files += '<td class="no-decoration"></td></tr>';
 
         return `<table><tbody>${rows.join('')}${files}</tbody></table>`;
     }
