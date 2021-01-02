@@ -11,14 +11,14 @@ html body * {
   box-sizing: border-box;
 }
 html body h4 {
-  border-bottom: 1px solid #ddd;
-  margin: 5px;
+  margin: 0;
+  padding: 5px;
   font-size: 12px;
   width: 100%;
-  height: 19px;
-  color: chocolate;
+  background-color: #8ba987;
+  color: white;
 }
-html body .bb-main {
+html body .app {
   position: absolute;
   top: 0;
   right: 0;
@@ -27,9 +27,58 @@ html body .bb-main {
   padding: 0;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
+}
+html body .app .header {
+  display: grid;
+  grid-template-columns: 42px auto auto auto;
+  align-items: center;
+  height: 60px;
+  padding: 10px;
+  background-color: #60677a;
+  color: white;
+}
+html body .app .header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+html body .app .header .links {
+  justify-self: end;
+  display: flex;
   flex-direction: row;
 }
-html body .bb-main .bb-context {
+html body .app .header .links .header-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+html body .app .header .links .header-link:hover {
+  text-decoration: underline;
+}
+html body .app .header .links .header-link img {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+html body .app .bb-main {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+html body .app .bb-main .bb-context {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,14 +86,13 @@ html body .bb-main .bb-context {
   width: 201px;
   overflow-x: hidden;
   overflow-y: auto;
-  border-right: 1px solid #ddd;
   font-size: 12px;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
 }
-html body .bb-main .bb-context div {
+html body .app .bb-main .bb-context div {
   position: absolute;
   top: 25px;
   left: 0;
@@ -53,18 +101,18 @@ html body .bb-main .bb-context div {
   overflow-x: hidden;
   overflow-y: auto;
 }
-html body .bb-main .bb-context div table {
+html body .app .bb-main .bb-context div table {
   width: 100%;
   margin: 0 5px;
   table-layout: fixed;
   border-spacing: 0;
   border-collapse: collapse;
 }
-html body .bb-main .bb-context div table td {
+html body .app .bb-main .bb-context div table td {
   vertical-align: top;
   font-weight: bold;
 }
-html body .bb-main .bb-context div table td ul {
+html body .app .bb-main .bb-context div table td ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -72,14 +120,14 @@ html body .bb-main .bb-context div table td ul {
   font-weight: normal;
   color: #777;
 }
-html body .bb-main .bb-context div table td ul li {
+html body .app .bb-main .bb-context div table td ul li {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-html body .bb-main .bb-context div table td ul li.decimal {
+html body .app .bb-main .bb-context div table td ul li.decimal {
   color: #333;
 }
-html body .bb-main .bb-editors-container {
+html body .app .bb-main .bb-editors-container {
   position: absolute;
   top: 0;
   right: 201px;
@@ -88,55 +136,57 @@ html body .bb-main .bb-editors-container {
   display: flex;
   flex-direction: column;
 }
-html body .bb-main .bb-editors-container .bb-editor-toolbar {
+html body .app .bb-main .bb-editors-container .bb-editor-toolbar {
   width: 100%;
-  height: 24px;
-  border-bottom: 1px solid #ddd;
+  height: 28px;
   display: flex;
   flex-direction: row;
   justify-content: start;
-  padding: 3px;
+  padding: 5px;
 }
-html body .bb-main .bb-editors-container .bb-editor-toolbar button {
+html body .app .bb-main .bb-editors-container .bb-editor-toolbar button {
   border: none;
-  width: 18px;
   height: 18px;
   background-color: white;
   color: #333;
   margin-right: 3px;
+  padding: 1px 4px 1px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  font-size: 10px;
 }
-html body .bb-main .bb-editors-container .bb-editor-toolbar button img {
+html body .app .bb-main .bb-editors-container .bb-editor-toolbar button img {
   width: 16px;
   height: 16px;
   pointer-events: none;
 }
-html body .bb-main .bb-editors-container .bb-editor-toolbar button:hover {
+html body .app .bb-main .bb-editors-container .bb-editor-toolbar button:hover {
   background-color: #eee;
 }
-html body .bb-main .bb-editors-container .bb-editors-list {
+html body .app .bb-main .bb-editors-container .bb-editors-list {
   position: absolute;
-  top: 23px;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  padding: 5px;
+  top: 55px;
+  right: 10px;
+  left: 7px;
+  bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px #aaa;
   overflow-x: hidden;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
-html body .bb-main .bb-editors-container .bb-editors-list .bb-editor {
+html body .app .bb-main .bb-editors-container .bb-editors-list .bb-editor {
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
 }
-html body .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-code {
+html body .app .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-code {
   width: 100%;
   min-height: 100px;
   flex: 1;
@@ -144,7 +194,7 @@ html body .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-
   border: none;
   resize: none;
 }
-html body .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-result {
+html body .app .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-result {
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -152,61 +202,67 @@ html body .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-
   padding: 5px;
   margin: 0;
 }
-html body .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-result .bb-value {
+html body .app .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-result .bb-value {
   width: 150px;
   display: flex;
   flex-direction: column;
 }
-html body .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-result .bb-value > div:first-child {
+html body .app .bb-main .bb-editors-container .bb-editors-list .bb-editor .bb-editor-result .bb-value > div:first-child {
   width: 100%;
   height: 20px;
   padding: 3px;
   font-weight: bold;
   text-align: center;
 }
-html body .bb-main .bb-editors-container .bb-editors-list .bb-editor .CodeMirror {
+html body .app .bb-main .bb-editors-container .bb-editors-list .bb-editor .CodeMirror {
   height: auto;
   border: 1px solid #ddd;
-  background-color: #eee;
+  background-color: #f7f7f7;
 }
-html body .bb-main .bb-editors-container .bb-editors-list .bb-editor.editor-focused .CodeMirror {
+html body .app .bb-main .bb-editors-container .bb-editors-list .bb-editor.editor-focused .CodeMirror {
   border: 1px solid #7DADD9;
   background-color: white;
 }
-html body .bb-main .bb-helpers {
+html body .app .bb-main .bb-helpers {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   width: 201px;
-  padding: 1px 5px;
+  padding: 0;
   overflow: hidden;
-  border-left: 1px solid #ddd;
   font-size: 14px;
   display: flex;
   flex-direction: column;
 }
-html body .bb-main .bb-helpers .bb-value-editor {
-  height: 230px;
-  border-bottom: 1px solid #ddd;
+html body .app .bb-main .bb-helpers .bb-value-editor {
+  height: 300px;
   font-size: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-html body .bb-main .bb-helpers .bb-value-editor table.value-radix input {
+html body .app .bb-main .bb-helpers .bb-value-editor .bit-grid table td {
+  width: 20px;
+  height: 20px;
+}
+html body .app .bb-main .bb-helpers .bb-value-editor table.value-radix {
+  margin-left: -10px;
+  margin-bottom: 10px;
+}
+html body .app .bb-main .bb-helpers .bb-value-editor table.value-radix input {
   border: 1px solid #ddd;
-  width: 98%;
+  width: 102%;
   font-size: 10px;
 }
-html body .bb-main .bb-helpers .bb-custom-functions {
+html body .app .bb-main .bb-helpers .bb-custom-functions {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: start;
 }
-html body .bb-main .bb-helpers .bb-custom-functions ul {
+html body .app .bb-main .bb-helpers .bb-custom-functions ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -214,44 +270,73 @@ html body .bb-main .bb-helpers .bb-custom-functions ul {
   font-size: 10px;
   color: #777;
 }
-html body .bb-main .bb-helpers .bb-custom-functions ul li {
+html body .app .bb-main .bb-helpers .bb-custom-functions ul li {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: 5px;
 }
-html body .bb-main .bit-grid {
+html body .app .bb-main .bit-grid {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-html body .bb-main .bit-grid table {
+html body .app .bb-main .bit-grid table {
   border-collapse: collapse;
   border-spacing: 0;
   border: none;
   table-layout: fixed;
   font-size: 9px;
 }
-html body .bb-main .bit-grid table td {
-  border: 1px solid #ccc;
+html body .app .bb-main .bit-grid table td {
   vertical-align: middle;
   text-align: center;
   width: 15px;
   height: 15px;
+  background-color: rgba(240, 217, 181, 0.5);
 }
-html body .bb-main .bit-grid table td div {
+html body .app .bb-main .bit-grid table td.no-decoration {
+  background-color: white;
+}
+html body .app .bb-main .bit-grid table td > div {
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+}
+html body .app .bb-main .bit-grid table td > div div {
+  flex: 1;
+  margin: 2px;
+}
+html body .app .bb-main .bit-grid table td.bit-set > div > div {
   background-color: #000;
-  width: 9px;
-  height: 9px;
+  box-shadow: 0px 1px 1px #000;
 }
-html body .bb-main .bit-grid table td.no-decoration {
+html body .app .bb-main .bit-grid table td.no-decoration {
   border: none;
 }
-html body .bb-main .bit-grid table tbody tr:nth-child(odd) > td:nth-child(even),
-html body .bb-main .bit-grid table tbody tr:nth-child(even) > td:nth-child(odd) {
-  background-color: #eee;
+html body .app .bb-main .bit-grid table td.no-decoration div {
+  justify-content: center;
+  align-items: center;
 }
-html body .bb-main .bit-grid table tbody tr:nth-child(odd) > td:nth-child(even).no-decoration,
-html body .bb-main .bit-grid table tbody tr:nth-child(even) > td:nth-child(odd).no-decoration {
+html body .app .bb-main .bit-grid table tbody tr:not(:last-child) td:first-child {
+  border-left: 1px solid #f0d9b5;
+}
+html body .app .bb-main .bit-grid table tbody tr:not(:last-child) td:last-child {
+  border-left: 1px solid #f0d9b5;
+}
+html body .app .bb-main .bit-grid table tbody tr:first-child td:not(:last-child) {
+  border-top: 1px solid #f0d9b5;
+}
+html body .app .bb-main .bit-grid table tbody tr:last-child td:not(:last-child) {
+  border-top: 1px solid #f0d9b5;
+}
+html body .app .bb-main .bit-grid table tbody tr:nth-child(odd) > td:nth-child(even),
+html body .app .bb-main .bit-grid table tbody tr:nth-child(even) > td:nth-child(odd) {
+  background-color: rgba(181, 136, 99, 0.5);
+}
+html body .app .bb-main .bit-grid table tbody tr:nth-child(odd) > td:nth-child(even).no-decoration,
+html body .app .bb-main .bit-grid table tbody tr:nth-child(even) > td:nth-child(odd).no-decoration {
   background-color: white;
 }
