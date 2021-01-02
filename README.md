@@ -1,5 +1,4 @@
 # ![logo](https://raw.githubusercontent.com/nnajm/visual-bb/main/public/images/logo.png) Visual BB
--------------------------------------------
 
 
 A visual tool to manipulate 64bit numbers, specially chess bitboards.
